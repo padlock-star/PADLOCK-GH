@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Notes — PADLOCK GH</title>
+  <meta name="robots" content="noindex,nofollow">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5;padding:24px;max-width:900px;margin:auto;background:#0b1220;color:#e5e7eb}
+    h1{margin:0 0 8px} h2{margin-top:28px}
+    code,pre{background:#0f172a;border:1px solid #273244;border-radius:8px;padding:10px;display:block;overflow:auto}
+    .tip{background:#0f172a;border-left:4px solid #38bdf8;padding:12px;border-radius:8px;margin:16px 0}
+    a{color:#38bdf8}
+    ul{margin:0 0 0 18px}
+  </style>
+</head>
+<body>
+  <h1>Admin Notes — PADLOCK GH</h1>
+  <p class="tip">Keep this page secret. It’s not linked in the site and is blocked from search engines. Access directly at <code>/admin-notes.html</code>.</p>
+
+  <h2>1) Update Prices</h2>
+  <p>Open <strong>script.js</strong> and edit the <code>PRICES</code> object. Labels must contain a number so Paystack can read the amount:</p>
+  <pre><code>MTN: [
+  {{ label: '1GB — GHS 5' }},
+  ...
+],
+Netflix: [
+  {{ label: 'Monthly Subscription — GHS 45' }}
+],
+Audiomack: [
+  {{ label: 'One-time Subscription — GHS 30' }}
+]</code></pre>
+  <p><strong>Note:</strong> The number in the label is parsed and sent to Paystack as GHS in pesewas.</p>
+
+  <h2>2) Paystack</h2>
+  <p>Public key is set near the top of <strong>script.js</strong>:</p>
+  <pre><code>const PAYSTACK_PUBLIC_KEY = "pk_live_...";</code></pre>
+  <p>Change it if needed. Currency is already set to <strong>GHS</strong>.</p>
+
+  <h2>3) Contact Numbers</h2>
+  <p>In <strong>script.js</strong>:</p>
+  <pre><code>const PHONE = "0534706233";
+const SMS_NUMBER = "0534706233";</code></pre>
+
+  <h2>4) What Each Button Does</h2>
+  <ul>
+    <li><strong>Pay Now (Data)</strong>: Reads selected plan + phone + email → opens Paystack with amount and metadata.</li>
+    <li><strong>Pay Netflix / Pay Audiomack</strong>: Reads plan + email → opens Paystack.</li>
+  </ul>
+
+  <h2>5) Troubleshooting</h2>
+  <ul>
+    <li>If the Paystack popup doesn’t show, verify internet connection and that the script <code>https://js.paystack.co/v1/inline.js</code> loads.</li>
+    <li>If amount is 0 or wrong, ensure the plan label includes a number (e.g., <em>GHS 45</em>).</li>
+    <li>For AFA/Voucher manual charges (if added), use the prompt to enter the GHS amount.</li>
+  </ul>
+
+  <h2>6) Deployment Tips</h2>
+  <ul>
+    <li>Use GitHub Pages: Settings → Pages → Build from branch (main).</li>
+    <li>For Netlify: drag-drop the folder. No build step needed.</li>
+  </ul>
+
+  <p class="tip">Need to hide this file completely? Remove it before publishing, or restrict access via your host.</p>
+</body>
+</html>
