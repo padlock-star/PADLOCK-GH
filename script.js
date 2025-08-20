@@ -88,10 +88,12 @@ function toast(msg){
 
 // Extract numeric price from label and convert to pesewas for Paystack
 function parsePriceToPesewas(label){
-  // Find the FIRST number in the label (assumed to be GHS)
-  const match = (label || '').match(/([0-9]+(?:\.[0-9]+)?)/);
-  if(!match) return null;
-  return Math.round(parseFloat(match[1]) * 100); // pesewas
+  // Extract the LAST number in the label so formats like "2GB — GHS 12" work.
+  const matches = (label || '').match(/([0-9]+(?:\.[0-9]+)?)/g);
+  if(!matches || !matches.length) return null;
+  const amount = parseFloat(matches[matches.length - 1]); // use last number (price)
+  if(!Number.isFinite(amount)) return null;
+  return Math.round(amount * 100); // convert GHS -> pesewas
 }
 
 function buildRef(prefix){
