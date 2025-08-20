@@ -10,32 +10,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;padding:24px;max-width:900px;margin:auto;background:#0b1220;color:#e5e7eb}
-    h1{margin:0 0 8px} h2{margin-top:28px}
     code,pre{background:#0f172a;border:1px solid #273244;border-radius:8px;padding:10px;display:block;overflow:auto}
     .tip{background:#0f172a;border-left:4px solid #38bdf8;padding:12px;border-radius:8px;margin:16px 0}
     a{color:#38bdf8}
-    ul{margin:0 0 0 18px}
   </style>
 </head>
 <body>
   <h1>Admin Notes — PADLOCK GH</h1>
   <p class="tip">Hidden page: open directly at <code>/admin-notes.html</code>. Blocked from search engines.</p>
-
-  <h2>Update Prices</h2>
-  <p>Edit <b>script.js</b> → <code>PRICES</code> object. Amounts are parsed from the label (e.g., <code>GHS 45</code>) and charged in GHS via Paystack.</p>
-
-  <h2>Paystack</h2>
-  <pre><code>const PAYSTACK_PUBLIC_KEY = "pk_live_...";</code></pre>
-  <p>Replace if needed. Currency is fixed to GHS.</p>
-
-  <h2>Contacts</h2>
-  <pre><code>const PHONE = "0534706233";
-const SMS_NUMBER = "0534706233";</code></pre>
-
-  <h2>Troubleshooting</h2>
-  <ul>
-    <li>If the popup doesn’t appear, confirm internet and that <code>https://js.paystack.co/v1/inline.js</code> loads.</li>
-    <li>If amount is wrong, ensure the label includes the number (e.g., <em>GHS 45</em>).</li>
-  </ul>
+  <h2>Promo Banner</h2>
+  <p>Edit text inside <code>index.html</code> (the <code>#promo</code> block). Users can dismiss it; we remember this via <code>localStorage</code>.</p>
+  <h2>Order Tracker</h2>
+  <p>Tracker is a client‑side demo. It shows placeholder statuses based on the last character of the 4‑digit code. To make it real, add a lightweight backend or Paystack webhook and query by reference+phone.</p>
+  <h2>Prices & Paystack</h2>
+  <pre><code>script.js → PRICES (GHS numbers inside labels)
+PAYSTACK_PUBLIC_KEY (top of script.js) — currently set to your live key
+PHONE / SMS_NUMBER — 0534706233</code></pre>
+  <h2>Deploy</h2>
+  <p>Upload all files to GitHub Pages or Netlify. No build step required.</p>
 </body>
 </html>

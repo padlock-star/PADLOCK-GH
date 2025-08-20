@@ -4,13 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PADLOCK GH | Data Bundles, e‑Vouchers & Subscriptions</title>
-  <meta name="description" content="Buy MTN, AirtelTigo, Telecel bundles, e‑vouchers, Netflix and Audiomack subscriptions instantly." />
+  <meta name="description" content="Buy MTN, AirtelTigo, Telecel bundles, e‑vouchers, Netflix and Audiomack subscriptions instantly with Paystack." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Promo banner -->
+  <div id="promo" class="promo hidden">
+    <div class="promo-inner container">
+      <div class="promo-text">
+        <strong>Promo:</strong> Free 1GB on your first order — limited time.
+      </div>
+      <button id="promoClose" class="promo-close" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="brand">
@@ -21,6 +31,7 @@
         <a href="#bundles">Bundles</a>
         <a href="#subs">Subscriptions</a>
         <a href="#services">Services</a>
+        <a href="#tracker">Order Tracker</a>
         <a href="#contact">Contact</a>
       </nav>
       <button id="menuBtn" class="menu-btn" aria-label="Open Menu">☰</button>
@@ -43,7 +54,7 @@
           <span class="badge">7am–10pm Support</span>
         </div>
       </div>
-      <div class="hero-card">
+      <div class="hero-card float">
         <div class="card-head">
           <div class="dot dot-green"></div>
           <div class="dot dot-yellow"></div>
@@ -62,12 +73,12 @@
     <div class="container">
       <div class="section-head">
         <h2>Popular Data Plans</h2>
-        <p class="muted">MTN, AirtelTigo & Telecel. Prices already in GHS for easy checkout.</p>
+        <p class="muted">MTN, AirtelTigo & Telecel. Prices are in GHS for easy checkout.</p>
       </div>
 
       <div class="cards-grid">
         <!-- MTN -->
-        <div class="card card-brand mtn">
+        <div class="card card-brand mtn hover-lift">
           <div class="card-title">
             <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/MTN_Logo.svg" alt="MTN" class="logo">
             <h3>MTN</h3>
@@ -80,7 +91,7 @@
         </div>
 
         <!-- AirtelTigo -->
-        <div class="card card-brand tigo">
+        <div class="card card-brand tigo hover-lift">
           <div class="card-title">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Airtel_Tigo_logo.png" alt="AirtelTigo" class="logo small">
             <h3>AirtelTigo</h3>
@@ -93,7 +104,7 @@
         </div>
 
         <!-- Telecel -->
-        <div class="card card-brand telecel">
+        <div class="card card-brand telecel hover-lift">
           <div class="card-title">
             <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Telecel_logo.svg" alt="Telecel" class="logo small">
             <h3>Telecel</h3>
@@ -117,7 +128,7 @@
 
       <div class="cards-grid two">
         <!-- Netflix -->
-        <div class="card card-brand netflix">
+        <div class="card card-brand netflix hover-lift">
           <div class="card-title">
             <div class="logo-text">N</div>
             <h3>Netflix</h3>
@@ -129,7 +140,7 @@
         </div>
 
         <!-- Audiomack -->
-        <div class="card card-brand audiomack">
+        <div class="card card-brand audiomack hover-lift">
           <div class="card-title">
             <div class="logo-text">A</div>
             <h3>Audiomack</h3>
@@ -150,12 +161,12 @@
         <p class="muted">AFA Registration & e‑Voucher sales.</p>
       </div>
       <div class="cards-grid two">
-        <div class="card">
+        <div class="card hover-lift">
           <h3>AFA Registration</h3>
           <p class="muted">Requirements: Full name and number to be registered.</p>
           <button class="btn btn-block" onclick="servicePay('AFA Registration')">Pay for AFA</button>
         </div>
-        <div class="card">
+        <div class="card hover-lift">
           <h3>e‑Voucher Sales</h3>
           <p class="muted">WAEC, GES, Passport, NSS & more — instant codes.</p>
           <button class="btn btn-block" onclick="servicePay('e‑Voucher Purchase')">Pay for Voucher</button>
@@ -164,7 +175,22 @@
     </div>
   </section>
 
-  <section id="contact" class="section section-alt">
+  <section id="tracker" class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Order Tracker</h2>
+        <p class="muted">Enter your phone number and the last 4 digits of your Paystack reference to check status.</p>
+      </div>
+      <div class="tracker">
+        <input id="trackPhone" class="input" type="tel" placeholder="Phone number used for order">
+        <input id="trackRef" class="input" type="text" maxlength="4" placeholder="Last 4 of reference (e.g., 4F9A)">
+        <button class="btn" onclick="trackOrder()">Check Status</button>
+      </div>
+      <div id="trackResult" class="track-result muted"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
     <div class="container contact">
       <div>
         <h2>Need help?</h2>
@@ -184,6 +210,9 @@
       <p class="tiny">Built with Paystack • Mobile‑first • Clean UI</p>
     </div>
   </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
 
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script src="script.js"></script>
