@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PADLOCK GH | Data Bundles & e-Vouchers</title>
+  <meta name="description" content="PADLOCK GH — Buy MTN, AirtelTigo, and Telecel data bundles and e-vouchers instantly.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="container header">
+    <div class="brand">PADLOCK <span>GH</span></div>
+    <nav class="nav">
+      <a href="#bundles">Bundles</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="menuBtn" class="menu-btn" aria-label="Open Menu">☰</button>
+  </header>
+
+  <section class="hero container">
+    <h1>Fast, Affordable Data & e‑Vouchers</h1>
+    <p>Buy MTN, AirtelTigo, and Telecel bundles in seconds. Secure payments, instant support.</p>
+    <div class="cta">
+      <a class="btn primary" href="#bundles">Shop Bundles</a>
+      <a class="btn outline" id="whatsappLink" target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+  </section>
+
+  <section id="bundles" class="container">
+    <h2>Popular Plans</h2>
+    <p class="note">Select a network to view plans. Colors match official brands for quick recognition.</p>
+
+    <div class="grid">
+      <!-- MTN -->
+      <div class="card mtn">
+        <div class="card-header">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/MTN_Logo.svg" alt="MTN" class="logo">
+          <h3>MTN Bundles</h3>
+        </div>
+        <label class="label" for="mtnPlans">Choose a plan</label>
+        <select id="mtnPlans" class="select">
+          <option value="" selected disabled>— Select MTN Plan —</option>
+          <option>1GB — GHS 10</option>
+          <option>2GB — GHS 18</option>
+          <option>3GB — GHS 25</option>
+          <option>5GB — GHS 38</option>
+          <option>10GB — GHS 70</option>
+        </select>
+        <input id="mtnNumber" class="input" type="tel" placeholder="MTN Phone Number">
+        <button class="btn block" onclick="buy('MTN')">Buy Now</button>
+      </div>
+
+      <!-- AirtelTigo -->
+      <div class="card tigo">
+        <div class="card-header">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Airtel_Tigo_logo.png" alt="AirtelTigo" class="logo">
+          <h3>AirtelTigo Bundles</h3>
+        </div>
+        <label class="label" for="tigoPlans">Choose a plan</label>
+        <select id="tigoPlans" class="select">
+          <option value="" selected disabled>— Select AirtelTigo Plan —</option>
+          <option>1GB — GHS 8</option>
+          <option>2.5GB — GHS 15</option>
+          <option>5GB — GHS 28</option>
+          <option>10GB — GHS 55</option>
+        </select>
+        <input id="tigoNumber" class="input" type="tel" placeholder="AirtelTigo Phone Number">
+        <button class="btn block" onclick="buy('Tigo')">Buy Now</button>
+      </div>
+
+      <!-- Telecel -->
+      <div class="card telecel">
+        <div class="card-header">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Telecel_logo.svg" alt="Telecel" class="logo">
+          <h3>Telecel Bundles</h3>
+        </div>
+        <label class="label" for="telecelPlans">Choose a plan</label>
+        <select id="telecelPlans" class="select">
+          <option value="" selected disabled>— Select Telecel Plan —</option>
+          <option>1GB — GHS 9</option>
+          <option>3GB — GHS 22</option>
+          <option>5GB — GHS 35</option>
+          <option>10GB — GHS 65</option>
+        </select>
+        <input id="telecelNumber" class="input" type="tel" placeholder="Telecel Phone Number">
+        <button class="btn block" onclick="buy('Telecel')">Buy Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="container">
+    <h2>Other Services</h2>
+    <div class="grid s2">
+      <div class="card neutral">
+        <h3>AFA Registration</h3>
+        <p>Register your number for AFA. Requirements: Full Name and Number to be registered.</p>
+        <button class="btn block" onclick="quickMsg('AFA Registration')">Register Now</button>
+      </div>
+      <div class="card neutral">
+        <h3>e‑Voucher Sales</h3>
+        <p>WAEC, GES, NSS, Passport & more. Get valid vouchers instantly to your phone.</p>
+        <button class="btn block" onclick="quickMsg('e-Voucher Purchase')">Get Voucher</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container contact">
+    <h2>Contact</h2>
+    <div class="contact-actions">
+      <a id="smsLink" class="btn outline" target="_blank" rel="noopener">SMS</a>
+      <a id="callLink" class="btn outline" target="_blank" rel="noopener">Call</a>
+      <a id="waLink2" class="btn primary" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p class="small">We respond fast. Open 7am–10pm daily.</p>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> PADLOCK GH · All rights reserved.</p>
+      <p class="tiny">Built for speed, simplicity and mobile-first checkout.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Editable contacts — update these only
+    const BUSINESS_NAME = "PADLOCK GH";
+    const PHONE = "0555610075";     // Your main phone / WhatsApp
+    const SMS_NUMBER = "0555610075"; // For SMS deep link
+
+    // WhatsApp deep links
+    const waBase = "https://wa.me/233" + PHONE.replace(/^0/, "");
+    const waMsg = encodeURIComponent("Hello " + BUSINESS_NAME + ", I want to buy a data bundle.");
+    document.getElementById("whatsappLink").href = waBase + "?text=" + waMsg;
+    document.getElementById("waLink2").href = waBase + "?text=" + waMsg;
+
+    // SMS & Call
+    document.getElementById("smsLink").href = "sms:" + SMS_NUMBER + "?body=" + encodeURIComponent("Hello " + BUSINESS_NAME + ", I need assistance.");
+    document.getElementById("callLink").href = "tel:" + PHONE;
+
+    // Buy handler (prefills WhatsApp message with network, plan & number)
+    function buy(net){
+      const id = net.toLowerCase();
+      const plan = document.getElementById(id + (net==='Tigo' ? 'Plans' : 'Plans')).value;
+      const num = document.getElementById(id + (net==='Tigo' ? 'Number' : 'Number')).value;
+      if(!plan){ alert("Please select a " + net + " plan."); return; }
+      if(!num){ alert("Enter a valid phone number."); return; }
+      const msg = encodeURIComponent(`I want to buy ${net} bundle: ${plan} for ${num}`);
+      window.open(waBase + "?text=" + msg, "_blank");
+    }
+
+    function quickMsg(topic){
+      const msg = encodeURIComponent(`Hello ${BUSINESS_NAME}, I want help with: ${topic}.`);
+      window.open(waBase + "?text=" + msg, "_blank");
+    }
+
+    // Mobile nav
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.querySelector('.nav');
+    menuBtn.addEventListener('click', () => nav.classList.toggle('open'));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
