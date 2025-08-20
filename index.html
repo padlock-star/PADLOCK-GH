@@ -1,35 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PADLOCK GH | Data Bundles, e‑Vouchers & Subscriptions</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Buy MTN, AirtelTigo, Telecel bundles, e‑vouchers, Netflix and Audiomack subscriptions instantly." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header><h1>PADLOCK GH</h1></header>
-  <section id="bundles">
-    <h2>Bundles</h2>
-    <select id="mtnPlans"></select>
-    <input id="mtnNumber" placeholder="Phone">
-    <input id="mtnEmail" placeholder="Email">
-    <button onclick="buyData('MTN')">Pay Now</button>
-  </section>
-  <section id="subs">
-    <h2>Subscriptions</h2>
-    <div>
-      <h3>Netflix</h3>
-      <select id="netflixPlan"></select>
-      <input id="netflixEmail" placeholder="Email">
-      <button onclick="buySub('Netflix')">Pay Netflix</button>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <span class="lock">🔒</span>
+        <span class="name">PADLOCK <b>GH</b></span>
+      </div>
+      <nav class="nav">
+        <a href="#bundles">Bundles</a>
+        <a href="#subs">Subscriptions</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="menuBtn" class="menu-btn" aria-label="Open Menu">☰</button>
     </div>
-    <div>
-      <h3>Audiomack</h3>
-      <select id="audiomackPlan"></select>
-      <input id="audiomackEmail" placeholder="Email">
-      <button onclick="buySub('Audiomack')">Pay Audiomack</button>
+  </header>
+
+  <section class="hero">
+    <div class="bg grid-bg"></div>
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>Fast, secure <span>data & vouchers</span>—paid with ease</h1>
+        <p>Choose your network, pick a plan, and pay securely via Paystack. Instant confirmation and quick support.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#bundles">Shop Bundles</a>
+          <a id="whatsappLink" class="btn btn-ghost" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+        <div class="badges">
+          <span class="badge">Paystack Secured</span>
+          <span class="badge">Mobile‑First</span>
+          <span class="badge">7am–10pm Support</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="card-head">
+          <div class="dot dot-green"></div>
+          <div class="dot dot-yellow"></div>
+          <div class="dot dot-red"></div>
+        </div>
+        <div class="card-body">
+          <h3>Quick Buy</h3>
+          <p>Select your network & plan below to pay instantly.</p>
+          <a href="#bundles" class="btn btn-block btn-primary">Start Now</a>
+        </div>
+      </div>
     </div>
   </section>
+
+  <section id="bundles" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Popular Data Plans</h2>
+        <p class="muted">MTN, AirtelTigo & Telecel. Prices already in GHS for easy checkout.</p>
+      </div>
+
+      <div class="cards-grid">
+        <!-- MTN -->
+        <div class="card card-brand mtn">
+          <div class="card-title">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/MTN_Logo.svg" alt="MTN" class="logo">
+            <h3>MTN</h3>
+          </div>
+          <label class="label" for="mtnPlans">Choose a plan</label>
+          <select id="mtnPlans" class="select"></select>
+          <input id="mtnNumber" class="input" type="tel" placeholder="MTN phone number">
+          <input id="mtnEmail" class="input" type="email" placeholder="Customer email (for receipt)">
+          <button class="btn btn-block" onclick="buyData('MTN')">Pay Now</button>
+        </div>
+
+        <!-- AirtelTigo -->
+        <div class="card card-brand tigo">
+          <div class="card-title">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Airtel_Tigo_logo.png" alt="AirtelTigo" class="logo small">
+            <h3>AirtelTigo</h3>
+          </div>
+          <label class="label" for="tigoPlans">Choose a plan</label>
+          <select id="tigoPlans" class="select"></select>
+          <input id="tigoNumber" class="input" type="tel" placeholder="AirtelTigo phone number">
+          <input id="tigoEmail" class="input" type="email" placeholder="Customer email (for receipt)">
+          <button class="btn btn-block" onclick="buyData('AirtelTigo')">Pay Now</button>
+        </div>
+
+        <!-- Telecel -->
+        <div class="card card-brand telecel">
+          <div class="card-title">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Telecel_logo.svg" alt="Telecel" class="logo small">
+            <h3>Telecel</h3>
+          </div>
+          <label class="label" for="telecelPlans">Choose a plan</label>
+          <select id="telecelPlans" class="select"></select>
+          <input id="telecelNumber" class="input" type="tel" placeholder="Telecel phone number">
+          <input id="telecelEmail" class="input" type="email" placeholder="Customer email (for receipt)">
+          <button class="btn btn-block" onclick="buyData('Telecel')">Pay Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="subs" class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Subscriptions</h2>
+        <p class="muted">Simple pricing in GHS. Instant Paystack checkout.</p>
+      </div>
+
+      <div class="cards-grid two">
+        <!-- Netflix -->
+        <div class="card card-brand netflix">
+          <div class="card-title">
+            <div class="logo-text">N</div>
+            <h3>Netflix</h3>
+          </div>
+          <label class="label" for="netflixPlan">Choose a plan</label>
+          <select id="netflixPlan" class="select"></select>
+          <input id="netflixEmail" class="input" type="email" placeholder="Account email (required)">
+          <button class="btn btn-block" onclick="buySub('Netflix')">Pay Netflix</button>
+        </div>
+
+        <!-- Audiomack -->
+        <div class="card card-brand audiomack">
+          <div class="card-title">
+            <div class="logo-text">A</div>
+            <h3>Audiomack</h3>
+          </div>
+          <label class="label" for="audiomackPlan">Choose a plan</label>
+          <select id="audiomackPlan" class="select"></select>
+          <input id="audiomackEmail" class="input" type="email" placeholder="Account email (required)">
+          <button class="btn btn-block" onclick="buySub('Audiomack')">Pay Audiomack</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Other Services</h2>
+        <p class="muted">AFA Registration & e‑Voucher sales.</p>
+      </div>
+      <div class="cards-grid two">
+        <div class="card">
+          <h3>AFA Registration</h3>
+          <p class="muted">Requirements: Full name and number to be registered.</p>
+          <button class="btn btn-block" onclick="servicePay('AFA Registration')">Pay for AFA</button>
+        </div>
+        <div class="card">
+          <h3>e‑Voucher Sales</h3>
+          <p class="muted">WAEC, GES, Passport, NSS & more — instant codes.</p>
+          <button class="btn btn-block" onclick="servicePay('e‑Voucher Purchase')">Pay for Voucher</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section section-alt">
+    <div class="container contact">
+      <div>
+        <h2>Need help?</h2>
+        <p class="muted">We respond fast. Open 7am–10pm daily.</p>
+      </div>
+      <div class="contact-actions">
+        <a id="smsLink" class="btn btn-ghost" target="_blank" rel="noopener">SMS</a>
+        <a id="callLink" class="btn btn-ghost" target="_blank" rel="noopener">Call</a>
+        <a id="waLink2" class="btn btn-primary" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> PADLOCK GH · All rights reserved.</p>
+      <p class="tiny">Built with Paystack • Mobile‑first • Clean UI</p>
+    </div>
+  </footer>
+
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script src="script.js"></script>
 </body>
